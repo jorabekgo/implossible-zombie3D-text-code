@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZOMBIE 3D Animatsiyasi</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #1a1a1a;
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            perspective: 800px;
+            position: relative;
+        }
+
+        .text {
+            font-size: 100px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: white;
+            display: flex;
+        }
+        
+        .text span {
+            display: inline-block;
+            transition: transform 0.5s, color 0.5s;
+            margin: 0 5px;
+        }
+
+        .text span:hover {
+            transform: translateY(-20px) rotateZ(10deg);
+            color: #ff0000; /* Rang o'zgaradi */
+            text-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+        }
+
+        @keyframes move {
+            0%, 100% { transform: translateX(-30px); }
+            50% { transform: translateX(30px); }
+        }
+
+        .text {
+            animation: move 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="text">
+            <span>Z</span>
+            <span>O</span>
+            <span>M</span>
+            <span>B</span>
+            <span>I</span>
+            <span>E</span>
+        </div>
+    </div>
+
+    <script>
+        const textElement = document.querySelector('.text');
+
+        document.addEventListener('mousemove', (e) => {
+            const { clientX, clientY } = e;
+            const xPos = (clientX / window.innerWidth) * 20 - 10;
+            const yPos = (clientY / window.innerHeight) * 20 - 10;
+
+            textElement.style.transform = `rotateY(${xPos}deg) rotateX(${yPos}deg)`;
+        });
+    </script>
+</body>
+</html>
